@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Student;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
 
 class StudentController extends Controller
 {
@@ -12,6 +18,7 @@ class StudentController extends Controller
     public function index()
     {
         //
+        return 'test';
     }
 
     /**
@@ -20,6 +27,7 @@ class StudentController extends Controller
     public function create()
     {
         //
+        return "ok";
     }
 
     /**
@@ -60,5 +68,45 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    // Import data using spreadsheet, esp. in xlsx format
+
+    public function storeImport(Request $request){
+        // dd('ok');
+        $this->validate($request, [
+            'spreadsheet' => 'required|file|mimes:xlsx,xls'
+        ]);
+
+        // dd($request->spreadsheet->hashName());
+        $importFile = $request->file('spreadsheet');
+        // $importFile->storeAs('public/spreadsheets', $importFile->hashName());
+
+        $reader = IOFactory::createReader("Xlsx");
+        $spreadsheet = $reader->load($importFile);
+        $spreadsheet->setActiveSheetIndex(1);
+        // $cellValue = $spreadsheet->getActiveSheet()->getCell('N5')->getValue();
+        $cellValue = $spreadsheet->getActiveSheet()->rangeToArray('L5:R53', NULL, TRUE, TRUE, TRUE);
+        dd($cellValue);
+        $count = 0;
+        foreach($cellValue as $data){
+            $birthdate = $data['P'];
+            $birthdate = str_replace('/', '-', $birthdate);
+            Student::create([
+                'student_name' => addslashes($data['N']),
+                'class' => $data['R'],
+                'nisn' => $data['L'],
+                'birthdate' => date("Y-m-d", strtotime($birthdate)),
+                'gender' => $data['Q']
+            ]);
+            $count++;
+        }
+        echo "Data yang masuk : ".$count;
+        // dd($cellValue);
+        // $cellValue = $spreadsheet->getSheetByName('Daftar Siswa')->getCell('A3')->getValue();
+        // dd($cellValue);
+
+        // return $cellValue;
     }
 }

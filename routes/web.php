@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,8 @@ use App\Http\Controllers\PagesController;
 
 // But, since index probably will contain some data from database, I'll probably use this one
 Route::get('/', [PagesController::class, 'index']);
+Route::get('/import', function() {
+    return view('students.import');
+});
+Route::post('/student/import', [StudentController::class, 'storeImport'])->name('importx');
+Route::resource('/student', \App\Http\Controllers\StudentController::class);
