@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
 
@@ -25,3 +26,6 @@ Route::get('/', [PagesController::class, 'index']);
 Route::get('/student/import', [StudentController::class, 'import']);
 Route::post('/student/import/store', [StudentController::class, 'storeImport'])->name('importx');
 Route::resource('/student', \App\Http\Controllers\StudentController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
