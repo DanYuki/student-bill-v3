@@ -18,7 +18,8 @@ class StudentController extends Controller
     public function index()
     {
         //
-        return 'test';
+        $students = Student::all();
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -27,7 +28,7 @@ class StudentController extends Controller
     public function create()
     {
         //
-        return "ok";
+        return view('students.import');
     }
 
     /**
@@ -70,9 +71,11 @@ class StudentController extends Controller
         //
     }
 
+    public function import(){
+        return view('students.import');
+    }
 
     // Import data using spreadsheet, esp. in xlsx format
-
     public function storeImport(Request $request){
         // dd('ok');
         $this->validate($request, [
@@ -88,7 +91,6 @@ class StudentController extends Controller
         $spreadsheet->setActiveSheetIndex(1);
         // $cellValue = $spreadsheet->getActiveSheet()->getCell('N5')->getValue();
         $cellValue = $spreadsheet->getActiveSheet()->rangeToArray('L5:R53', NULL, TRUE, TRUE, TRUE);
-        dd($cellValue);
         $count = 0;
         foreach($cellValue as $data){
             $birthdate = $data['P'];
@@ -102,7 +104,7 @@ class StudentController extends Controller
             ]);
             $count++;
         }
-        echo "Data yang masuk : ".$count;
+        return redirect()->route('student.index')->with('message', 'Berhasil import data sejumlah : '.$count);
         // dd($cellValue);
         // $cellValue = $spreadsheet->getSheetByName('Daftar Siswa')->getCell('A3')->getValue();
         // dd($cellValue);

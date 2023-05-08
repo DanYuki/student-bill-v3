@@ -22,8 +22,6 @@ use App\Http\Controllers\StudentController;
 
 // But, since index probably will contain some data from database, I'll probably use this one
 Route::get('/', [PagesController::class, 'index']);
-Route::get('/import', function() {
-    return view('students.import');
-});
-Route::post('/student/import', [StudentController::class, 'storeImport'])->name('importx');
+Route::get('/student/import', [StudentController::class, 'import']);
+Route::post('/student/import/store', [StudentController::class, 'storeImport'])->name('importx');
 Route::resource('/student', \App\Http\Controllers\StudentController::class);
