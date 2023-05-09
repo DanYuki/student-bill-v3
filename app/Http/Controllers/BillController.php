@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Bill;
 
 class BillController extends Controller
 {
@@ -12,6 +13,8 @@ class BillController extends Controller
     public function index()
     {
         //
+        $bills = Bill::all();
+        return view('bills.index', compact('bills'));
     }
 
     /**
@@ -19,7 +22,7 @@ class BillController extends Controller
      */
     public function create()
     {
-        //
+        return view('bills.create');
     }
 
     /**
@@ -27,7 +30,20 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+            'bill_name' => 'required|min:5',
+            'bill_amount' => 'required|integer',
+            'bill_description' => 'required|min:5'
+        ]);
+
+        Bill::create([
+            'bill_name' => addslashes($request->bill_name),
+            'bill_amount' => $request->bill_amount,
+            'bill_description' => addslashes($request->bill_description) 
+        ]);
+
+        return redirect()->route('bill.index')->with('success', 'New bill inserted successfully');
     }
 
     /**
@@ -43,7 +59,8 @@ class BillController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $bill = Bill::find($id);
+        return view('bills.edit', compact('bill'));
     }
 
     /**
@@ -51,7 +68,12 @@ class BillController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $bill = Bill::find($id);
+        $bill->bill_name = $request->bill_name;
+        $bill->bill_amount = $request->bill_amount;
+        $bill->bill_description = $request->bill_description;
+        $bill->save();
+        return redirect()->route('bill.index')->with('success', 'Data edited');
     }
 
     /**
@@ -59,6 +81,8 @@ class BillController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $bill = Bill::find($id);
+        $bill->delete();
+        return redirect()->route('bill.index')->with('success', 'Data deleted');
     }
 }

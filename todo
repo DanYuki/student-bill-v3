@@ -1,2 +1,3 @@
 //TODO Add spreadsheet handler into the app for acquiiring dummy datacomposer require phpoffice/phpspreadsheet
-//BUG FIX the birthdate bug please 
+//BUG FIX the birthdate bug please  
+//TODO Work on BillController, create index page, create page, and edit page. Add delete function too
