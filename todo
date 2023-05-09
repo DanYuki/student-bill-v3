@@ -1,3 +1,5 @@
-//TODO Add spreadsheet handler into the app for acquiiring dummy datacomposer require phpoffice/phpspreadsheet
+//DONE Add spreadsheet handler into the app for acquiiring dummy datacomposer require phpoffice/phpspreadsheet
 //BUG FIX the birthdate bug please  
-//TODO Work on BillController, create index page, create page, and edit page. Add delete function too
+//DONE Work on BillController, create index page, create page, and edit page. Add delete function too\
+//TODO Create student_bill table, and attach a bill to one of the student
+//TODO Implement foreign key in migration later when I got the flexibility and skill, for now keep it simple

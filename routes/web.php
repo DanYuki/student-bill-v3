@@ -26,6 +26,7 @@ Auth::routes();
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/student/import', [StudentController::class, 'import']);
 Route::post('/student/import/store', [StudentController::class, 'storeImport'])->name('importx');
+Route::post('/student/{id}/bill', [BillController::class, 'attachBill'])->name('attach-bill');
 Route::resource('/student', \App\Http\Controllers\StudentController::class);
 
 Route::resource('/bill', \App\Http\Controllers\BillController::class);

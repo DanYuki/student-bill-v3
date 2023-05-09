@@ -85,4 +85,10 @@ class BillController extends Controller
         $bill->delete();
         return redirect()->route('bill.index')->with('success', 'Data deleted');
     }
+
+    public function attachBill(Request $request){
+        // Inside request there will be student_id, bill_id, and bill_amount
+        
+    }
+
 }

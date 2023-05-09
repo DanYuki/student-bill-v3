@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Student;
@@ -44,7 +45,9 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $student = Student::find($id);
+        $bills = Bill::all();
+        return view('students.detail', compact('student', 'bills'));
     }
 
     /**
@@ -52,7 +55,7 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('students.detail');
     }
 
     /**

@@ -66,7 +66,7 @@
                             @forelse ($students as $student)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$student->student_name}}</td>
+                                <td><a href="{{route('student.show', $student->student_id)}}">{{$student->student_name}}</a></td>
                                 <td>{{$student->class}}</td>
                                 <td>{{$student->nisn}}</td>
                                 <td>
