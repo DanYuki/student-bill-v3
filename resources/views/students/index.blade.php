@@ -47,9 +47,9 @@
                 <div class="card-header">{{ __('Student List') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('message'))
                     <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+                        {{ session('message') }}
                     </div>
                     @endif
                     <a href="/student/import" class="btn btn-primary">Import</a>
