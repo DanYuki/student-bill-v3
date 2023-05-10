@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bill;
+use App\Models\StudentBill;
 
 class BillController extends Controller
 {
@@ -97,8 +98,14 @@ class BillController extends Controller
     {
         // Inside request there will be student_id, bill_id, and bill_amount
         $bill = explode('|', $request->bill_info);
-        dd($bill);
 
+        StudentBill::create([
+            'student_id' => $request->student_id,
+            'bill_id' => $bill[0],
+            'bill_amount' => $bill[1]
+        ]);
+
+        return redirect()->route('student.show', $request->student_id)->with('success', 'Penambahan berhasil');
     }
 
 }

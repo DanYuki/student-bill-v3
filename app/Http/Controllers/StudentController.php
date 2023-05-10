@@ -48,6 +48,7 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $bills = Bill::all();
+        $bills = $bills->pluck('bill_name', 'bill_id');
         $s_bills = StudentBill::all();
         return view('students.detail', compact('student', 'bills', 's_bills'));
     }

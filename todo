@@ -3,3 +3,4 @@
 //DONE Work on BillController, create index page, create page, and edit page. Add delete function too\
 //TODO Create student_bill table, and attach a bill to one of the student
 //TODO Implement foreign key in migration later when I got the flexibility and skill, for now keep it simple
+//TODO Create sum feature for attached bll of each student

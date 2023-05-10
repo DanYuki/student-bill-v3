@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -13,13 +14,34 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <a href="{{route('attach-bill', $student->student_id)}}" class="btn btn-success">Tambah Tagihan</a><br>
-                    @forelse($s_bills as $s_bill)
-                        
-                    @empty
-                    There's nothing here
+                    <a href="{{route('attach-bill', $student->student_id)}}" class="btn btn-success mb-3">Tambah Tagihan</a><br>
+                    <table class="table">
+                        <thead class="table-dark">
+                            <th>No.</th>
+                            <th>Bill Name</th>
+                            <th>Added at</th>
+                            <th>Bill Amount</th>
+                        </thead>
+                        <tbody>
+                            @forelse($s_bills as $s_bill)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$bills[$s_bill->bill_id]}}</td>
+                                <td>{{$s_bill->created_at}}</td>
+                                <td>@convertRp($s_bill->bill_amount)</td>
+                            </tr>
+                            @empty
+                            There's nothing here
 
-                    @endforelse
+                            @endforelse
+                            <tr class="table-dark">
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td>@convertRp(150000)</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -33,9 +55,6 @@
             <form action="{{route('attach-bill', $student->student_id)}}" method="post">
                 <label for="bill_id" class="fw-bold">Student</label>
                 <select name="bill_id">
-                    @foreach($bills as $bill)
-                    <option value="{{$bill->bill_id}}">{{$bill->bill_name}}</option>
-                    @endforeach
                 </select>
             </form>
         </div>
