@@ -86,9 +86,19 @@ class BillController extends Controller
         return redirect()->route('bill.index')->with('success', 'Data deleted');
     }
 
-    public function attachBill(Request $request){
+    public function attachBill(string $student_id){
         // Inside request there will be student_id, bill_id, and bill_amount
+        $bills = Bill::all();
+        return view('students/attach-bill', compact('student_id', 'bills'));
         
+    }
+
+    public function attachBillStore(Request $request)
+    {
+        // Inside request there will be student_id, bill_id, and bill_amount
+        $bill = explode('|', $request->bill_info);
+        dd($bill);
+
     }
 
 }

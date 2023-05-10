@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ Auth::routes();
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/student/import', [StudentController::class, 'import']);
 Route::post('/student/import/store', [StudentController::class, 'storeImport'])->name('importx');
-Route::post('/student/{id}/bill', [BillController::class, 'attachBill'])->name('attach-bill');
+Route::get('/student/{id}/bill', [BillController::class, 'attachBill'])->name('attach-bill');
+Route::post('/student/{id}/bill/store', [BillController::class, 'attachBillStore'])->name('attach-bill-post');
 Route::resource('/student', \App\Http\Controllers\StudentController::class);
 
 Route::resource('/bill', \App\Http\Controllers\BillController::class);

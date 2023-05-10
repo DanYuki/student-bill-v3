@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bill;
+use App\Models\StudentBill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Student;
@@ -47,7 +48,8 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $bills = Bill::all();
-        return view('students.detail', compact('student', 'bills'));
+        $s_bills = StudentBill::all();
+        return view('students.detail', compact('student', 'bills', 's_bills'));
     }
 
     /**

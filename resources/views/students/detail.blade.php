@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ $student->student_name }}</div>
+                <div class="card-header">Daftar tagihan</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,13 +13,13 @@
                         {{ session('status') }}
                     </div>
                     @endif
+                    <a href="{{route('attach-bill', $student->student_id)}}" class="btn btn-success">Tambah Tagihan</a><br>
                     @forelse($s_bills as $s_bill)
                         
                     @empty
                     There's nothing here
 
                     @endforelse
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
