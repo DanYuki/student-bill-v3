@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PaymentHistory;
+use Illuminate\Auth\Events\Validated;
+use App\Models\StudentBill;
 
 class PaymentController extends Controller
 {
@@ -17,9 +20,11 @@ class PaymentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        //
+        $s_bills = StudentBill::where('student_id', $id)->get();
+
+        return view('students.payment', compact('s_bills'));
     }
 
     /**
@@ -27,7 +32,14 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'p_amount' => 'required|integer'
+        ]);
+        PaymentHistory::create([
+            'student_id' => $request->student_id,
+            'p_amount' => $request->p_amount
+        ]);
+        return redirect()->route('student.show', $request->student_id)->with('success', 'Payment successfull');
     }
 
     /**

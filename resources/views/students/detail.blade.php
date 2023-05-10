@@ -9,12 +9,15 @@
                 <div class="card-header">Daftar tagihan</div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('success'))
                     <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+                        {{ session('success') }}
                     </div>
                     @endif
-                    <a href="{{route('attach-bill', $student->student_id)}}" class="btn btn-success mb-3">Tambah Tagihan</a><br>
+                    <div class="d-flex">
+                        <a href="{{route('attach-bill', $student->student_id)}}" class="btn btn-success mb-3 me-3">Tambah Tagihan</a><br>
+                        <a href="{{route('pay-bill', $student->student_id)}}" class="btn btn-success mb-3">Bayar Tagihan</a><br>
+                    </div>
                     <table class="table">
                         <thead class="table-dark">
                             <th>No.</th>
@@ -34,11 +37,37 @@
                             There's nothing here
 
                             @endforelse
-                            <tr class="table-dark">
+                            <tr class="table-light">
                                 <td></td>
                                 <td></td>
-                                <td>Total</td>
-                                <td>@convertRp(150000)</td>
+                                <td class="text-end fw-bold">Total : </td>
+                                <td>@convertRp($s_bills->sum('bill_amount'))</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Payment History</h3>
+                    <table class="table">
+                        <thead class="table-dark">
+                            <th>No.</th>
+                            <th>Paid at</th>
+                            <th>Paid Amount</th>
+                        </thead>
+                        <tbody>
+                            @forelse($p_histories as $p_history)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$p_history->created_at}}</td>
+                                <td>@convertRp($p_history->p_amount)</td>
+                            </tr>
+                            @empty
+                            There's nothing here
+
+                            @endforelse
+                            <tr class="table-light">
+                                <td></td>
+                                <td class="text-end fw-bold">Total : </td>
+                                <td>@convertRp($p_histories->sum('p_amount'))</td>
                             </tr>
                         </tbody>
                     </table>
@@ -48,7 +77,7 @@
     </div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-6 border">
             <h2 class="">Daftar Tagihan</h2>
@@ -62,5 +91,5 @@
             One of three columns
         </div>
     </div>
-</div>
+</div> -->
 @endsection

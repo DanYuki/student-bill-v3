@@ -4,3 +4,5 @@
 //TODO Create student_bill table, and attach a bill to one of the student
 //TODO Implement foreign key in migration later when I got the flexibility and skill, for now keep it simple
 //TODO Create sum feature for attached bll of each student
+//TODO Create payment history models, and payment feature
+//TODO Check if the paid amount is exceeding the total bills or not, probably using max in html

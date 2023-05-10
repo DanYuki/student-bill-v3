@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/student/import', [StudentController::class, 'import']);
 Route::post('/student/import/store', [StudentController::class, 'storeImport'])->name('importx');
 Route::get('/student/{id}/bill', [BillController::class, 'attachBill'])->name('attach-bill');
 Route::post('/student/{id}/bill/store', [BillController::class, 'attachBillStore'])->name('attach-bill-post');
+Route::get('/student/{id}/bill/pay', [PaymentController::class, 'create'])->name('pay-bill');
+Route::post('/student/{id}/bill/pay/store', [PaymentController::class, 'store'])->name('pay-bill-post');
 Route::resource('/student', \App\Http\Controllers\StudentController::class);
 
 Route::resource('/bill', \App\Http\Controllers\BillController::class);

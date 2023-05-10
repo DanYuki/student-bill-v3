@@ -7,6 +7,7 @@ use App\Models\StudentBill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Student;
+use App\Models\PaymentHistory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -50,7 +51,8 @@ class StudentController extends Controller
         $bills = Bill::all();
         $bills = $bills->pluck('bill_name', 'bill_id');
         $s_bills = StudentBill::all();
-        return view('students.detail', compact('student', 'bills', 's_bills'));
+        $p_histories = PaymentHistory::where('student_id', $id)->get();
+        return view('students.detail', compact('student', 'bills', 's_bills', 'p_histories'));
     }
 
     /**
