@@ -14,3 +14,5 @@
 //TODO Add back nav button to go back to previous page
 //TODO Make a directive function to calculate difference between bill->sum and payment->sum
 //TODO Join queries between tables so it become more efficient
+//TODO Create multilevel user login feature, auth using app.blade.php, so every page that use that template will require auth as admins
+//BUG Fix the PHPSpreadsheet error, "Failed to open spreadhseet file"

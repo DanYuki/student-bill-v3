@@ -6,6 +6,7 @@
     $total_sum = $datas->sum('bill_amount') - $p_histories->sum('p_amount'); 
 ?>
 <div class="container">
+    <a href="{{route('student.index')}}" class="btn btn-primary mb-3"><- Back</a>
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">

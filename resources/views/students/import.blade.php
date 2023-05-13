@@ -18,8 +18,8 @@
         @error('spreadsheet')
         <span class="text-danger">{{$message}}</span>
 
-        <button type="submit">Submit</button>
         @enderror
+        <button type="submit">Submit</button>
     </form>
 </body>
 
