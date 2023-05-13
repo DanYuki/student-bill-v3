@@ -2,6 +2,9 @@
 
 @section('content')
 
+<?php  
+    $total_sum = $s_bills->sum('bill_amount') - $p_histories->sum('p_amount'); 
+?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -16,7 +19,7 @@
                     @endif
                     <div class="d-flex">
                         <a href="{{route('attach-bill', $student->student_id)}}" class="btn btn-success mb-3 me-3">Tambah Tagihan</a><br>
-                        <a href="{{route('pay-bill', $student->student_id)}}" class="btn btn-success mb-3">Bayar Tagihan</a><br>
+                        <a href="{{route('pay-bill', $student->student_id)}}" class="btn btn-success mb-3 {{ ($total_sum == 0) ? 'disabled' : '' }}">Bayar Tagihan</a><br>
                     </div>
                     <table class="table">
                         <thead class="table-dark">

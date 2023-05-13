@@ -113,10 +113,5 @@ class StudentController extends Controller
             $count++;
         }
         return redirect()->route('student.index')->with('message', 'Berhasil import data sejumlah : '.$count);
-        // dd($cellValue);
-        // $cellValue = $spreadsheet->getSheetByName('Daftar Siswa')->getCell('A3')->getValue();
-        // dd($cellValue);
-
-        // return $cellValue;
     }
 }

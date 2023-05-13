@@ -32,7 +32,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::is('student.index') ? 'active' : '' }}" aria-current="page" href="{{route('student.index')}}">Students</a>
+                        <li class="nav-item">
+                        </li>
+                        <a class="nav-link {{ Route::is('bill.index') ? 'active' : '' }}" href="{{route('bill.index')}}">Bills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

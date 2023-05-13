@@ -14,11 +14,13 @@
     
     <form action="{{route('importx')}}" method="post" class="form" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="spreadsheet" class="dz-default dz-danger" class="file form-control">
+        <input type="file" name="spreadsheet" class="file form-control @error('spreadsheet') is-invalid @enderror">
+        @error('spreadsheet')
+        <span class="text-danger">{{$message}}</span>
 
         <button type="submit">Submit</button>
+        @enderror
     </form>
-    <script src="{{asset('js/dropzone.js')}}"></script>
 </body>
 
 </html>
