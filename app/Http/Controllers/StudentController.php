@@ -12,6 +12,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -45,14 +46,17 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $student_id)
     {
-        $student = Student::find($id);
-        $bills = Bill::all();
-        $bills = $bills->pluck('bill_name', 'bill_id');
-        $s_bills = StudentBill::where('student_id', $id)->get();
-        $p_histories = PaymentHistory::where('student_id', $id)->get();
-        return view('students.detail', compact('student', 'bills', 's_bills', 'p_histories'));
+        $p_histories = PaymentHistory::where('student_id', $student_id)->get();
+
+        $datas = DB::table('student_bills')
+            ->join('bills', 'student_bills.bill_id', '=', 'bills.bill_id')
+            ->select('bills.bill_name', 'student_bills.bill_amount', 'student_bills.created_at')
+            ->where('student_bills.student_id', '=', $student_id)
+            ->get();
+
+        return view('students.detail', compact('p_histories', 'datas', 'student_id'));
     }
 
     /**

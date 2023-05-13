@@ -13,3 +13,4 @@
 //DONE Create navigation between feature 
 //TODO Add back nav button to go back to previous page
 //TODO Make a directive function to calculate difference between bill->sum and payment->sum
+//TODO Join queries between tables so it become more efficient
