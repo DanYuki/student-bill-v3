@@ -8,7 +8,7 @@
 //DONE Check if the paid amount is exceeding the total bills or not, probably using max in html
 //DONE Bills from other student's, showed up on another student's detail page
 //TODO Create pagination on index page
-//BUG max value when paying the bills didn't change even after the student pay, please change it from sum of s_bills to previous sum but substracted by sum of paid bills
+//DONE max value when paying the bills didn't change even after the student pay, please change it from sum of s_bills to previous sum but substracted by sum of paid bills
 //DONE Disable pay button if the bill->sum - payment->sum = 0
 //DONE Create navigation between feature 
 //TODO Add back nav button to go back to previous page
