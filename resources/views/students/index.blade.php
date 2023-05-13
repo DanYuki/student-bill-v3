@@ -40,6 +40,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -65,7 +66,7 @@
                         <tbody>
                             @forelse ($students as $student)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
+                                <td>{{($students->currentpage()-1) * $students->perpage() + $loop->iteration}}</td>
                                 <td><a href="{{route('student.show', $student->student_id)}}">{{$student->student_name}}</a></td>
                                 <td>{{$student->class}}</td>
                                 <td>{{$student->nisn}}</td>

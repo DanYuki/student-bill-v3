@@ -1,8 +1,11 @@
 //DONE Add spreadsheet handler into the app for acquiiring dummy datacomposer require phpoffice/phpspreadsheet
-//BUG FIX the birthdate bug please  
+//DONE FIX the birthdate bug please  
 //DONE Work on BillController, create index page, create page, and edit page. Add delete function too\
-//TODO Create student_bill table, and attach a bill to one of the student
+//DONE Create student_bill table, and attach a bill to one of the student
 //TODO Implement foreign key in migration later when I got the flexibility and skill, for now keep it simple
-//TODO Create sum feature for attached bll of each student
-//TODO Create payment history models, and payment feature
-//TODO Check if the paid amount is exceeding the total bills or not, probably using max in html
+//DONE Create sum feature for attached bll of each student
+//DONE Create payment history models, and payment feature
+//DONE Check if the paid amount is exceeding the total bills or not, probably using max in html
+//DONE Bills from other student's, showed up on another student's detail page
+//TODO Create pagination on index page
+//BUG max value when paying the bills didn't change even after the student pay, please change it from sum of s_bills to previous sum but substracted by sum of paid bills

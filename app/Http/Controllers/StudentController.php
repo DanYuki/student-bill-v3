@@ -21,7 +21,7 @@ class StudentController extends Controller
     public function index()
     {
         //
-        $students = Student::all();
+        $students = Student::paginate(20);
         return view('students.index', compact('students'));
     }
 
@@ -50,7 +50,7 @@ class StudentController extends Controller
         $student = Student::find($id);
         $bills = Bill::all();
         $bills = $bills->pluck('bill_name', 'bill_id');
-        $s_bills = StudentBill::all();
+        $s_bills = StudentBill::where('student_id', $id)->get();
         $p_histories = PaymentHistory::where('student_id', $id)->get();
         return view('students.detail', compact('student', 'bills', 's_bills', 'p_histories'));
     }

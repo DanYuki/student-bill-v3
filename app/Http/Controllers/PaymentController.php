@@ -23,8 +23,9 @@ class PaymentController extends Controller
     public function create(string $id)
     {
         $s_bills = StudentBill::where('student_id', $id)->get();
+        $payments = PaymentHistory::where('student_id', $id)->get();
 
-        return view('students.payment', compact('s_bills'));
+        return view('students.payment', compact('s_bills', 'payments'));
     }
 
     /**
@@ -33,7 +34,10 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'p_amount' => 'required|integer'
+            'p_amount' => 'required|integer|gt:0',
+        ], [
+            'p_amount.gt' => "Nominal pembayaran tidak boleh Rp. 0",
+            'p_amount.required' => "Nominal pembayaran tidak boleh kosong"
         ]);
         PaymentHistory::create([
             'student_id' => $request->student_id,

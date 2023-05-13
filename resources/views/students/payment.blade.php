@@ -22,8 +22,12 @@
                                 <form action="{{route('pay-bill-post', $s_bills[0]->student_id)}}" method="post">
                                     @csrf
                                     <label for="p_amount" class="fw-bold">Payment Amount</label>
-                                    <input type="number" name="p_amount" class="form-control" max="{{$s_bills->sum('bill_amount')}}">
-
+                                    <input type="number" name="p_amount" class="form-control @error('p_amount') is-invalid @enderror" max="{{$s_bills->sum('bill_amount') - $payments->sum('p_amount')}}">
+                                    @error('p_amount')
+                                    <span class="text-danger">
+                                        {{$message}}
+                                    </span> <br>    
+                                    @enderror
                                     <input type="hidden" name="student_id" value="{{$s_bills[0]->student_id}}">
                                     <button type="submit" class="btn btn-primary mt-3 mb-3">Tambah</button>
                                 </form>
