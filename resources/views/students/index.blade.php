@@ -54,6 +54,7 @@
                     </div>
                     @endif
                     <a href="/student/import" class="btn btn-primary">Import</a>
+                    <a href="/student/add" class="btn btn-primary">Add Student</a>
                     <table class="table">
                         <thead>
                             <th>No.</th>
