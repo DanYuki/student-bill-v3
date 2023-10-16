@@ -54,7 +54,7 @@
                     </div>
                     @endif
                     <a href="/student/import" class="btn btn-primary">Import</a>
-                    <a href="/student/add" class="btn btn-primary">Add Student</a>
+                    <a href="{{route('add-student')}}" class="btn btn-primary">Add Student</a>
                     <table class="table">
                         <thead>
                             <th>No.</th>
@@ -72,17 +72,13 @@
                                 <td>{{$student->class}}</td>
                                 <td>{{$student->nisn}}</td>
                                 <td>
-                                    @if ($student->gender === 'L')
-                                    Male
-                                    @else
-                                    Female
-                                    @endif
+                                    {{ucwords($student->gender)}}
                                 </td>
-                                <td>{{$student->birthdate}}</td>
+                                <td>{{date('d F Y', strtotime($student->birthdate))}}</td>
                             </tr>
                             @empty
                             <div class="alert alert-danger">
-                                Data belum ada
+                                There's nothing here!
                             </div>
                             @endforelse
                         </tbody>
