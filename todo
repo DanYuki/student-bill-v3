@@ -11,8 +11,13 @@
 //DONE max value when paying the bills didn't change even after the student pay, please change it from sum of s_bills to previous sum but substracted by sum of paid bills
 //DONE Disable pay button if the bill->sum - payment->sum = 0
 //DONE Create navigation between feature 
-//TODO Add back nav button to go back to previous page
+//DONE Add back nav button to go back to previous page
 //TODO Make a directive function to calculate difference between bill->sum and payment->sum
 //TODO Join queries between tables so it become more efficient
 //TODO Create multilevel user login feature, auth using app.blade.php, so every page that use that template will require auth as admins
 //BUG Fix the PHPSpreadsheet error, "Failed to open spreadhseet file"
+
+//DONE Create store function for student create() / backend
+
+Next deliver : 
+//TODO Create edit and delete for student data / frontend
