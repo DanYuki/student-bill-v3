@@ -40,7 +40,29 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $validatedData = $request->validate([
+            'student_name' => 'required|string|max:120',
+            'class' => 'required|in:1,2,3,4,5,6',
+            'nisn' => ['required', 'string', 'size:10', 'regex:/^[0-9]+$/'],
+            'birthdate' => 'required|date',
+            'gender' => 'required|in:laki-laki,perempuan',
+            'parent_number' => 'required|string|max:20', // Add additional validation rules for phone number
+        ]);
+
+        // If passsed run the rest
+
+        Student::create([
+            'student_name' => addslashes($validatedData['student_name']),
+            'class' => $validatedData['class'],
+            'nisn' => $validatedData['nisn'],
+            'birthdate' => date("Y-m-d", strtotime($validatedData['birthdate'])),
+            'gender' => $validatedData['gender']
+        ]);
+
+        // if success
+        return redirect()->route('add-student')->with('success', 'Success!');
+
     }
 
     /**

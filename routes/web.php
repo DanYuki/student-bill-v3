@@ -28,7 +28,8 @@ Auth::routes();
 Route::get('/', [PagesController::class, 'index']);
 
 // Student Route
-Route::get('/student/add', [StudentController::class, 'create']);
+Route::get('/student/add', [StudentController::class, 'create'])->name('add-student');
+Route::post('/student/store', [StudentController::class, 'store'])->name('store-student');
 Route::get('/student/import', [StudentController::class, 'import']);
 Route::post('/student/import/store', [StudentController::class, 'storeImport'])->name('importx');
 Route::get('/student/{id}/bill', [BillController::class, 'attachBill'])->name('attach-bill');
