@@ -140,4 +140,11 @@ class StudentController extends Controller
         }
         return redirect()->route('student.index')->with('message', 'Berhasil import data sejumlah : '.$count);
     }
+
+    // Get list of students based on class
+    public function getClass(int $class){
+        $students = Student::where('class', $class)
+                ->get();
+        return view('students.class', compact('students', 'class'));
+    }
 }

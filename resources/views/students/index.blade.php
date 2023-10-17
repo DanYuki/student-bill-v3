@@ -44,6 +44,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+            <div class="card mb-1">
+                <div class="card-header">{{__('Class List')}}</div>
+                <div class="card-body">
+                    <a href="/student/class/1" class="btn btn-primary">Kelas 1</a>
+                    <a href="/student/class/2" class="btn btn-primary">Kelas 2</a>
+                    <a href="/student/class/3" class="btn btn-primary">Kelas 3</a>
+                    <a href="/student/class/4" class="btn btn-primary">Kelas 4</a>
+                    <a href="/student/class/5" class="btn btn-primary">Kelas 5</a>
+                    <a href="/student/class/6" class="btn btn-primary">Kelas 6</a>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">{{ __('Student List') }}</div>
 
